@@ -18,7 +18,7 @@ Android Device 에서 OBDII 디바이스와 ELM327 프로토콜을 통해 주행
    
 - OBDLibrary: Playground로 사용되는 본 앱과의 분리를 위해 패키지를 분리하였습니다. 해당 모듈만 따로 aar로 빌드 하여 사용하는 것이 권장됩니다.
 
-  > 주의 : Android 12 이상부터 BLUETOOTH_ADMIN 권한과 BLUETOOTH_SCAN, BLUETOOTH_CONNECT 권한을 필요로합니다.<br>본 앱에선 permission을 묻는 depth가 없으니 Android12 이상의 디바이스에선 앱 설정에서 수동으로 허용 처리를 해주세요.
+  > 주의 : Android 12 이상부터 BLUETOOTH_ADMIN 권한과 BLUETOOTH_SCAN, BLUETOOTH_CONNECT 권한을 필요로합니다.<br>본 앱에선 permission을 묻는 stage가 별도로 존재하지 않으니 Android12 이상의 디바이스에선 앱 설정에서 수동으로 허용 처리를 해주세요.
 
   - OBDConnectionManager : OBD와의 연결 및 속도 정보 요청 및 기반 response를 [SpeedDistanceCalculator]로 송신하는 클래스입니다.
   - SpeedDistanceCalculator : OBD를 통해 받아온 자동차의 속도를 기반으로 차량의 총 주행거리를 계산합니다.
