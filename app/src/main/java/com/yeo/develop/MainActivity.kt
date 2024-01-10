@@ -30,12 +30,17 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             launch {
                 OBDConnectionManager.bluetoothConnectionState.collectLatest {
-                    binding.tvBluetoothConnectState.text = it.toString()
+                    binding.tvBluetoothConnectState.text = "연결 상태 :$it"
                 }
             }
             launch {
                 SpeedDistanceCalculator.distance.collectLatest {
-                    binding.tvCurrentDistance.text = it.toString()
+                    binding.tvCurrentDistance.text = "주행 거리 :$it m"
+                }
+            }
+            launch {
+                SpeedDistanceCalculator.currentSpeedFlow.collectLatest {
+                    binding.tvCurrentSpeed.text = "현재 속도 : $it km/h"
                 }
             }
         }

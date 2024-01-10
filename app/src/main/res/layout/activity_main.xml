@@ -16,26 +16,41 @@
         android:layout_marginHorizontal="50dp"
         app:layout_constraintBottom_toTopOf="@id/ll_btns"
         android:hint="OBD MAC ADDRESS"/>
-
-    <TextView
-        android:id="@+id/tv_bluetooth_connect_state"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/edt_mac_address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="연결 상태"/>
-    <TextView
-        android:id="@+id/tv_currentDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18dp"
-        tools:text="적산 거리"
-        app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_connect_state"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:gravity="center">
 
+        <TextView
+            android:id="@+id/tv_bluetooth_connect_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            tools:text="연결 상태"/>
+        <TextView
+            android:id="@+id/tv_currentDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            tools:text="적산 거리"
+            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_connect_state"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/tv_currentSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            tools:text="현재 속도"
+            app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_connect_state"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_btns"

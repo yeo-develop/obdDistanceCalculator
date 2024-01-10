@@ -101,7 +101,7 @@ object OBDConnectionManager {
                 bluetoothAdapter.get()?.getRemoteDevice(macAddress)
             kotlin.runCatching {
                 var temporarySocket: BluetoothSocket? = null
-                //index는 굳이 안넣어도 되지만.. 디버깅용으로 좋을 듯 해서요
+                //index는 굳이 안넣어도 되지만.. 재 시도 횟수 카운팅 겸 디버그 용으로 좋을 듯 해서 남깁니다.
                 whileIndexedWithSuspendAction(stopCondition = { temporarySocket?.isConnected == true }) { times ->
                     Timber.d("TRY TO RECONNECT COUNT : $times")
                     // 1초에 한번 "될때까지" 재연결을 무한정 시도합니다.
