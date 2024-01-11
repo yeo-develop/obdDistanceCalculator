@@ -154,9 +154,9 @@ object OBDConnectionManager {
             } ?: throw NullPointerException("Connection not ready")
         }.onSuccess {
             Timber.d("SEND DATA SUCCESS")
-        }.onFailure { _ ->
-            //소켓이 존재하는데 무언가 throw 되는것은 연결이 끊어진 것으로 판단합니다.
-            onConnectionLost()
+        }.onFailure { t ->
+            //소켓이 존재하는데 NullpointerException을 제외한 무언가 throw 되는것은 연결이 끊어진 것으로 판단합니다.
+            handleExceptionWhileCommunicate(t)
         }
     }
 
@@ -184,9 +184,9 @@ object OBDConnectionManager {
         }.onSuccess { res ->
             Timber.d("RECEIVING DATA SUCCESS -> ${res.trim()}")
             res.trim()
-        }.onFailure { _ ->
-            // outputStream과 마찬가지로 소켓이 존재하는데 무언가 throw 되는것은 연결이 끊어진 것으로 판단합니다.
-            onConnectionLost()
+        }.onFailure { t ->
+            // outputStream과 마찬가지로소켓이 존재하는데 NullpointerException을 제외한 무언가 throw 되는것은 연결이 끊어진 것으로 판단합니다.
+            handleExceptionWhileCommunicate(t)
         }.getOrNull()
     }
 
@@ -252,5 +252,17 @@ object OBDConnectionManager {
         sendData("010D\r")
         delay(200L)
         receiveData()
+    }
+
+    private fun handleExceptionWhileCommunicate(exception: Throwable) {
+        when(exception) {
+            is NullPointerException -> {
+                Timber.d("Connection Not Ready!")
+            }
+            else -> {
+                Timber.d("connection lost!")
+                onConnectionLost()
+            }
+        }
     }
 }
